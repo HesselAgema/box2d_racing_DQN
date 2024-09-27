@@ -10,15 +10,15 @@ class ReplayMemory:
     def push(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
 
-    def sample(self, batch_size):
+    def sample(self, batch_size, device):
         batch = random.sample(self.memory, batch_size)
         state, action, reward, next_state, done = zip(*batch)
         return (
-            torch.tensor(np.stack(state), dtype=torch.float32),
-            torch.tensor(action),
-            torch.tensor(reward),
-            torch.tensor(np.stack(next_state), dtype=torch.float32),
-            torch.tensor(done)
+            torch.tensor(np.stack(state), dtype=torch.float32).to(device),
+            torch.tensor(action).to(device),
+            torch.tensor(reward).to(device),
+            torch.tensor(np.stack(next_state), dtype=torch.float32).to(device),
+            torch.tensor(done).to(device)
         )
 
     def __len__(self):

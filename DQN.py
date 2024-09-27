@@ -6,9 +6,9 @@ class DQN(nn.Module):
     def __init__(self, input_channels, num_actions):
         super(DQN, self).__init__()
         # Define the convolutional layers
-        self.conv1 = nn.Conv2d(input_channels, 32, kernel_size=3, stride=1)
-        self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=1)
-        self.conv3 = nn.Conv2d(64, 64, kernel_size=3, stride=1)
+        self.conv1 = nn.Conv2d(input_channels, 16, kernel_size=6, stride=1)
+        self.conv2 = nn.Conv2d(16, 32, kernel_size=5, stride=1)
+        self.conv3 = nn.Conv2d(32, 32, kernel_size=3, stride=1)
         
         # Flatten the output from the conv layers
         self.flatten = nn.Flatten()
